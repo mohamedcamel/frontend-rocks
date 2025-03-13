@@ -1,52 +1,41 @@
-import { useEffect, useState } from "react";
-import {Link, useParams} from 'react-router';
+interface PokemonCard{
+  id: number;
+  image: string;
+  name: string;
+  types: string[];
+}
+
+const data = [
+  {
+    id: 1,
+    name: "Geodude",
+    image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/74.png",
+    types: ["fire", "water"],
+  },
+
+  {
+    id: 7,
+    name:"Squirtle",
+    image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png",
+    type:["water"],
+  },
+]
 
 export const Detail = () => {
-  const{id } = useParams();
-  return <div className="text-6xl">Dettaglio: {id}</div>
+  return null
 }
 
 export const App = () => {
-  const [count, setCount] = useState(0);
-  const [title, setTitle] = useState("Skibidex");
-
-  useEffect(() => {
-    if(count===1000){
-      setTitle("Hai raggiunto il valore 1000")
-    }
-  }, [count])
-
-  return (
-    <div className="h-dvh flex flex-col items-center justify-center">
-      <div className="bg-white p-8 rounded-md shadow-lg">
-        <h1 className="text-center font-bold text-3xl text-blue-400 mb-4">
-          {title}
-        </h1>
-
-        <h2 className="text-center font-bold text-xl mb-6">Vite + React</h2>
-
-        <div className="flex flex-col items-center space-y-4">
-          <button
-            className="bg-blue-500 text-white px-4 py-2 rounded-md shadow-md cursor-pointer hover:bg-blue-600 transition-colors"
-            onClick={() => setCount((count) => count + 2)}
-          >
-            Hai premuto il pulsante {count} {count === 1 ? "volta" : "volte"}
-          </button>
-
-          <button
-              className="bg-blue-500 text-white px-4 py-2 rounded-md shadow-md cursor-pointer hover:bg-blue-600 transition-colors"
-              onClick={() => setTitle("Charizard")}
-          >
-            Cambia
-          </button>
-
-          <Link to="/frontend-rocks/dettaglio/1">Link alla pagina dettaglio</Link>
-
-          <p className="text-center">
-            Modifica <code>src/App.tsx</code> e salva per testare l'hot reload
-          </p>
+  return <div>
+  <div className="flex flex-row">
+    {data.map((item) => {
+      return (
+        <div>
+          {item.id} - {item.name}
+          <img src={item.image}></img>
         </div>
-      </div>
-    </div>
-  );
+      )
+    })}
+  </div>
+</div>
 }
